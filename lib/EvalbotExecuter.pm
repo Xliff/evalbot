@@ -90,7 +90,7 @@ sub run {
         } else {
             $program = (values %{$json->{files}})[0]{content};
             # Github only cleanup -- Ignore code formatting
-            $program =~ s/^```[perl6?]?//;
+            $program =~ s/^```(?:perl6?)?//;
             $program =~ s/```$//;
         }
     } elsif ($program =~ /^https:\/\/github\.com\/([^\/]+\/[^\/]+)\/blob\/([^\/]+\/[^\/].*)$/) {
