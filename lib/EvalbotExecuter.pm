@@ -89,6 +89,9 @@ sub run {
             return 'gist not found';
         } else {
             $program = (values %{$json->{files}})[0]{content};
+            # Github only cleanup -- Ignore code formatting 
+            $program ~~ s/^'```' 'perl'? '6'?//;
+            $program ~~ s/'```'$//;
         }
     } elsif ($program =~ /^https:\/\/github\.com\/([^\/]+\/[^\/]+)\/blob\/([^\/]+\/[^\/].*)$/) {
         my ($project, $file) = ($1, $2);
